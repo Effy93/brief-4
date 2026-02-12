@@ -1,5 +1,6 @@
 import express from "express";
 import categoryController from "./model/categories/category.controller";
+import articleController from "./model/articles/article.controller";
 const router = express.Router();
 
 /* ************************************************************************* */
@@ -7,7 +8,10 @@ const router = express.Router();
 /* ************************************************************************* */
 
 router.get("/api/categories", categoryController.browse);
+router.get("/api/articles", articleController.browse);
+router.get("/api/randomArticle", articleController.readOne);
 
+router.post("/api/articles", (req, res, next) => articleController.add(req, res, next));
 // Define item-related routes
 // import itemActions from "./modules/item/itemActions";
 
