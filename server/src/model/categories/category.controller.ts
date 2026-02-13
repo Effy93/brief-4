@@ -1,7 +1,7 @@
 import type { NextFunction, Request, Response } from "express";
 
-import categoryRepository from "./category.repository";
 import articleRepository from "../articles/article.repository";
+import categoryRepository from "./category.repository";
 
 class CategoryController {
   async browse(req: Request, res: Response, next: NextFunction) {
@@ -12,7 +12,6 @@ class CategoryController {
       next(error);
     }
   }
-
 }
 
 export default new CategoryController();
