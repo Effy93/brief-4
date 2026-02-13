@@ -38,7 +38,7 @@ class ArticleRepository {
     );
     return rows[0] as Article;
   }
-  async create(article: Article) {
+  async create(article: Omit<Article, "id">) {
     const [result] = await databaseClient.query<Result>(
       "INSERT into article (notion, content) VALUES (?, ?)",
       [article.notion, article.content],
@@ -60,11 +60,22 @@ class ArticleRepository {
 
     return insertId; // On renvoie l'ID du nouvel article
   }
-  async remove(id: number) {
-    const [result] = await databaseClient.query<Result> ("DELETE FROM article WHERE id= ?",[id])
+
+  async update(id: number, article: Article) {
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE article SET notion = ?, content = ? WHERE id =?",
+      [article.notion, article.content, id],
+    );
     return result.affectedRows > 0;
   }
 
+  async remove(id: number) {
+    const [result] = await databaseClient.query<Result>(
+      "DELETE FROM article WHERE id= ?",
+      [id],
+    );
+    return result.affectedRows > 0;
+  }
 }
 
 export default new ArticleRepository();

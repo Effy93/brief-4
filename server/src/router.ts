@@ -6,17 +6,17 @@ const router = express.Router();
 /* ************************************************************************* */
 // Define Your API Routes Here
 /* ************************************************************************* */
-
+// CATEGORIES
 router.get("/api/categories", categoryController.browse);
+router.post("/api/categories", categoryController.add);
+router.delete("/api/categories/:id", categoryController.remove);
+
+// ARTICLES
 router.get("/api/articles", articleController.browse);
 router.get("/api/randomArticle", articleController.readOne);
-
-router.post("/api/articles", (req, res, next) =>
-  articleController.add(req, res, next),
-);
-
-// router.delete("/api/articles:id", (req, res, next) =>
-//     articleController.delete(req, res, next));
+router.post("/api/articles", articleController.add);
+router.patch("/api/articles/:id", articleController.modify);
+router.delete("/api/articles/:id", articleController.remove);
 // Define item-related routes
 // import itemActions from "./modules/item/itemActions";
 

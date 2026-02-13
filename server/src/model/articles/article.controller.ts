@@ -1,62 +1,68 @@
-import type { NextFunction, Request, Response } from "express";
+import type { NextFunction, Request, RequestHandler, Response } from "express";
 import articleRepository from "./article.repository";
 
-class ArticleController {
-  async browse(req: Request, res: Response, next: NextFunction) {
-    try {
-      const articles = await articleRepository.readAll();
-      res.json(articles);
-    } catch (error) {
-      next(error);
+/**
+ * Browse all articles
+ *
+ * @returns {Promise<void>} A promise that resolves or rejects with an error
+ */
+const browse: RequestHandler = async (req, res, next) => {
+  try {
+    const articles = await articleRepository.readAll();
+    res.json(articles);
+  } catch (err) {
+    next(err);
+  }
+};
+/**
+ * Read a random article
+ *
+ * @returns {Promise<void>} A promise that resolves or rejects with an error
+ */
+const readOne: RequestHandler = async (req, res, next) => {
+  try {
+    const article = await articleRepository.readRandomOne();
+    res.json(article);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const add: RequestHandler = async (req, res, next) => {
+  try {
+    const newArticle = req.body;
+    const insertId = await articleRepository.create(newArticle);
+    res.status(201).json({ insertId });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const modify: RequestHandler = async (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const idtoNumber = Number(id);
+    const article = req.body;
+    const modify = await articleRepository.update(idtoNumber, article);
+    res.status(200).json({ modify });
+  } catch (err) {
+    next(err);
+  }
+};
+const remove: RequestHandler = async (req, res, next) => {
+  try {
+    const id = Number(req.params.id);
+    if (!id) {
+      res.status(400).json({ message: "Id not found" });
     }
-  }
-
-  // Read One
-  async readOne(req: Request, res: Response, next: NextFunction) {
-    try {
-      const article = await articleRepository.readRandomOne();
-      res.json(article);
-    } catch (error) {
-      next(error);
+    const deleted = await articleRepository.remove(id);
+    if (!deleted) {
+      res.status(404).json({ message: "Article not found" });
     }
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
   }
+};
 
-  // Create article
-  async add(req: Request, res: Response, next: NextFunction) {
-    try {
-      const newArticle = req.body;
-      const insertId = await articleRepository.create(newArticle);
-      res.status(201).json({ insertId });
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  // Update article (patch)
-  // async update(req: Request, res: Response, next: NextFunction) {
-  //   try {
-  //     const id = Number(req.params.id);
-
-  //   } catch(error) {
-  //     next(error)
-  //   }
-  // }
-
-  // Delete article
-  async delete(req: Request, res: Response, next: NextFunction) {
-    try{
-        const id = Number(req.params.id);
-        if(!id) {
-            return res.status(400).json({ message: "Id not found"})
-        }
-        const deleted = await articleRepository.remove(id)
-        if(!deleted) {
-            return res.status(404).json({ message: "Article not found"})
-        }
-        return res.sendStatus(204);
-    } catch (error) { next(error) }
-  }
-}
-
-
-export default new ArticleController();
+export default { browse, readOne, remove, add, modify };
