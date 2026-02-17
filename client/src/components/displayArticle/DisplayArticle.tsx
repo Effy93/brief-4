@@ -1,25 +1,38 @@
 import "./displayArticle.css";
+import { useEffect } from "react";
+import { useRandomArticle } from "../../hooks/useRandomArticle";
 
-interface displayArticle {
-  notion: string;
-  content: string;
-}
+export default function DisplayArticle() {
+  // destructuration
+  const { article, loading, error, fetchRandomArticle } = useRandomArticle();
 
-export default function displayArticle() {
+  useEffect(() => {
+    const fetchArticle = async () => {
+      await fetchRandomArticle();
+    };
+    fetchArticle();
+  }, [fetchRandomArticle]);
+
   return (
     <div className="right-section">
-      <button type="button" className="button-random">
-        {" "}
-        Generate random notion{" "}
+      <button
+        type="button"
+        className="button-random"
+        onClick={fetchRandomArticle}
+        disabled={loading}
+      >
+        Generate random notion
       </button>
-      <div className="container-article">
-        <h2> Provider - React </h2>
-      </div>
-      <p>
-        {" "}
-        Le provider c'est le robinet, le consummer (useContext) c'est le verre
-        d'eau{" "}
-      </p>
+      {loading && <p> Loading ...</p>}
+      {error && <p> {error} </p>}
+      {article && (
+        <>
+          <div className="container-article">
+            <h2> {article.notion} </h2>
+          </div>
+          <p> {article.content} </p>
+        </>
+      )}
     </div>
   );
 }
