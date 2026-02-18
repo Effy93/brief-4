@@ -5,7 +5,7 @@ Ce projet est une application **full-stack** dont l'objectif est de
 apprenants de **s'entraîner chaque jour à définir et comprendre des
 notions clés du développement web**.
 
-Il s'agit du **brief 4** de notre formation, réalisé en groupe avec
+Il s'agit du **brief 4** de notre formation CDA chez simplon.co, réalisé en binôme par
 **Eva** et **Alexandre**.
 
 ## 🧱 Stack technique
@@ -37,9 +37,9 @@ filtrer et afficher ces concepts côté client.
 
 1.  Installer le plugin Biome dans VSCode.
 2.  Cloner le dépôt.
-3.  Installer les dépendances : npm install
+3.  Installer les dépendances : `npm install` et `npm install react-icons`
 4.  Créer les fichiers server/.env et client/.env depuis les
-    .env.sample.
+    .env.sample ⚠️ ne pas les supprimer.
 
 ## 🗄️ Base de données MySQL
 
@@ -64,9 +64,9 @@ Puis lancer : `npm run db:migrate`
 
 ## ▶️ Lancer le projet
 
-npm run dev
+`npm run dev`
 
-Backend : http://localhost:3310 Frontend : port par défaut de Vite
+Backend : http://localhost:3310 Frontend : port par défaut de Vite (3000)
 
 ## 📜 Commandes principales
 
