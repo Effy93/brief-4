@@ -1,36 +1,23 @@
 import "./displayArticle.css";
-import { useEffect } from "react";
-import { useRandomArticle } from "../../hooks/useRandomArticle";
+import type { Article } from "../../interfaces/Article";
+import { useFetch } from "../../services/UseFetch";
 
 export default function DisplayArticle() {
-  // destructuration
-  const { article, loading, error, fetchRandomArticle } = useRandomArticle();
-
-  useEffect(() => {
-    const fetchArticle = async () => {
-      await fetchRandomArticle();
-    };
-    fetchArticle();
-  }, [fetchRandomArticle]);
+  const { data, isPending, error, refetch } = useFetch<Article>("http://localhost:3310/api/randomArticle");
 
   return (
     <div className="right-section">
-      <button
-        type="button"
-        className="button-random"
-        onClick={fetchRandomArticle}
-        disabled={loading}
-      >
+      <button type="button" className="button-random" onClick={refetch} disabled={isPending}>
         Generate random notion
       </button>
-      {loading && <p> Loading ...</p>}
+      {isPending && <p> Loading ...</p>}
       {error && <p> {error} </p>}
-      {article && (
+      {data && (
         <>
           <div className="container-article">
-            <h2> {article.notion} </h2>
+            <h2> {data.notion} </h2>
           </div>
-          <p className="content"> {article.content} </p>
+          <p className="content"> {data.content} </p>
         </>
       )}
     </div>
