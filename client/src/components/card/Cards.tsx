@@ -1,15 +1,11 @@
 import "./card.css";
-import CategoryTag from "../categoryTag/CategoryTag";
-export default function Cards() {
+import type CardsType from "../../interfaces/CardsType";
+
+export default function Cards({ notion, tag }: CardsType) {
   return (
     <div className="card-container">
-      <h2>React router</h2>
-      <div className="category-container">
-        <CategoryTag title="Javascript" />
-        <CategoryTag title="CSS" />
-        <CategoryTag title="React router" />
-        <CategoryTag title="Tailwind" />
-      </div>
+      <h2> {notion} </h2>
+      <div className="category-container">{tag}</div>
     </div>
   );
 }
