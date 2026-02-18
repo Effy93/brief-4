@@ -1,7 +1,5 @@
 import "./categoryTag.css";
-interface CategoryProps {
-  title: string;
-}
+import type { CategoryProps } from "../../interfaces/CategoryTagsType";
 export default function CategoryTag({ title }: CategoryProps) {
   return <div className="category-tag">{title}</div>;
 }

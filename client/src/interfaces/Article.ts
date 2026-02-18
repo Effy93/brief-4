@@ -9,3 +9,7 @@ export interface Article {
   content: string;
   categories: Category[];
 }
+export type PropsArticle = {
+  selectedArticle: Article | null;
+  setSelectedArticle: React.Dispatch<React.SetStateAction<Article | null>>;
+};
