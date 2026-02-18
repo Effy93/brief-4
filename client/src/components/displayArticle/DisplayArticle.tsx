@@ -3,11 +3,18 @@ import type { Article } from "../../interfaces/Article";
 import { useFetch } from "../../services/UseFetch";
 
 export default function DisplayArticle() {
-  const { data, isPending, error, refetch } = useFetch<Article>("http://localhost:3310/api/randomArticle");
+  const { data, isPending, error, refetch } = useFetch<Article>(
+    "http://localhost:3310/api/randomArticle",
+  );
 
   return (
     <div className="right-section">
-      <button type="button" className="button-random" onClick={refetch} disabled={isPending}>
+      <button
+        type="button"
+        className="button-random"
+        onClick={refetch}
+        disabled={isPending}
+      >
         Generate random notion
       </button>
       {isPending && <p> Loading ...</p>}

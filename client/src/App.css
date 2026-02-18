@@ -22,3 +22,9 @@ h4 {
   font-family: var(--font-titre);
   font-weight: 500;
 }
+
+@media (min-width: 815px) {
+  .container {
+    flex-direction: column-reverse;
+  }
+}

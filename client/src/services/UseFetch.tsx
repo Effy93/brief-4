@@ -14,7 +14,7 @@ export function useFetch<T>(url: string) {
       if (!res.ok) {
         throw new Error(res.statusText);
       }
-
+      // typage générique
       const json: T = await res.json();
 
       setData(json);

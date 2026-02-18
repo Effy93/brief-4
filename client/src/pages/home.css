@@ -52,3 +52,18 @@
   gap: 10px;
   justify-content: center;
 }
+
+@media (max-width: 815px) {
+  .main-container {
+    flex-direction: column-reverse;
+  }
+
+  .left-container {
+    border-right: none;
+  }
+
+  .left-container,
+  .right-container {
+    min-height: 50vh;
+  }
+}
