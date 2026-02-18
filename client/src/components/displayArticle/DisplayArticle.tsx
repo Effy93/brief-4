@@ -30,7 +30,7 @@ export default function DisplayArticle() {
           <div className="container-article">
             <h2> {article.notion} </h2>
           </div>
-          <p> {article.content} </p>
+          <p className="content"> {article.content} </p>
         </>
       )}
     </div>
