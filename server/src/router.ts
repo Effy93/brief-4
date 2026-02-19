@@ -1,17 +1,28 @@
 import express from "express";
-
+import articleController from "./model/articles/article.controller";
+import categoryController from "./model/categories/category.controller";
 const router = express.Router();
 
 /* ************************************************************************* */
 // Define Your API Routes Here
 /* ************************************************************************* */
+// CATEGORIES
+router.get("/api/categories", categoryController.browse);
+router.post("/api/categories", categoryController.add);
+router.delete("/api/categories/:id", categoryController.remove);
 
+// ARTICLES
+router.get("/api/articles", articleController.browse);
+router.get("/api/randomArticle", articleController.readOne);
+router.post("/api/articles", articleController.add);
+router.patch("/api/articles/:id", articleController.modify);
+router.delete("/api/articles/:id", articleController.remove);
 // Define item-related routes
-import itemActions from "./modules/item/itemActions";
+// import itemActions from "./modules/item/itemActions";
 
-router.get("/api/items", itemActions.browse);
-router.get("/api/items/:id", itemActions.read);
-router.post("/api/items", itemActions.add);
+// router.get("/api/items", itemActions.browse);
+// router.get("/api/items/:id", itemActions.read);
+// router.post("/api/items", itemActions.add);
 
 /* ************************************************************************* */
 
