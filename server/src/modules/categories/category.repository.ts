@@ -1,7 +1,7 @@
-import databaseClient from "../../../database/client";
-import type { Result, Rows } from "../../../database/client";
-import type { Category } from "./category.entity";
-import { CategoryEntity } from "./category.entity";
+import databaseClient from "../../database/db.config";
+import type { Result, Rows } from "../../database/db.config";
+import type { Category } from "./ICategory";
+import { CategoryEntity } from "./ICategory";
 
 class CategoryRepository {
   async readAll() {

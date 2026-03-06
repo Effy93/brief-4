@@ -1,21 +1,31 @@
+CREATE DATABASE popularize_dev;
+use popularize_dev;
+
 CREATE TABLE category (
-  id int unsigned primary key auto_increment not null,
+  id int primary key auto_increment not null,
   label VARCHAR (255) UNIQUE NOT NULL
 );
 
 
 CREATE TABLE article (
-  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  id INT  PRIMARY KEY AUTO_INCREMENT NOT NULL,
   notion VARCHAR(255) NOT NULL,
   content TEXT NOT NULL
 );
 
 CREATE TABLE article_category (
-  article_id INT UNSIGNED NOT NULL,
-  category_id INT UNSIGNED NOT NULL,
+  article_id INT NOT NULL,
+  category_id INT NOT NULL,
   PRIMARY KEY (article_id, category_id),
   CONSTRAINT fk_article FOREIGN KEY (article_id) REFERENCES article(id) ON DELETE CASCADE,
   CONSTRAINT fk_category_link FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE
+);
+
+CREATE TABLE user (
+  id INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  name VARCHAR(55) NOT NULL,
+  email VARCHAR(100) NOT NULL,
+  password VARCHAR(255) NOT NULL
 );
 
 

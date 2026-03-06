@@ -1,8 +1,8 @@
-import databaseClient from "../../../database/client";
-import type { Result, Rows } from "../../../database/client";
-import type { Category } from "../categories/category.entity";
-import type { Article } from "./article.entity";
-import { ArticleEntity } from "./article.entity";
+import databaseClient from "../../database/db.config";
+import type { Result, Rows } from "../../database/db.config";
+import type { Category } from "../categories/ICategory";
+import type { Article } from "./IArticle";
+import { ArticleEntity } from "./IArticle";
 
 class ArticleRepository {
   async readAll() {

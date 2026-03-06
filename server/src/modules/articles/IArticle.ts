@@ -1,4 +1,4 @@
-import type { Category } from "../categories/category.entity";
+import type { Category } from "../categories/ICategory";
 export interface Article {
   id: number;
   notion: string;

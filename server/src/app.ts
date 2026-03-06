@@ -60,7 +60,7 @@ app.use(express.json());
 /* ************************************************************************* */
 
 // Import the API router
-import router from "./router";
+import router from "./routes";
 
 // Mount the API router under the "/api" endpoint
 app.use(router);

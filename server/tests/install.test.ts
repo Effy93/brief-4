@@ -3,9 +3,9 @@ import "dotenv/config";
 
 import fs from "node:fs";
 
-import databaseClient from "../database/client";
+import databaseClient from "../src/database/db.config";
 
-import type { Rows } from "../database/client";
+import type { Rows } from "../src/database/db.config";
 
 // Close the database connection after all tests have run
 afterAll((done) => {

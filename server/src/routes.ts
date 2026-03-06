@@ -1,6 +1,7 @@
 import express from "express";
-import articleController from "./model/articles/article.controller";
-import categoryController from "./model/categories/category.controller";
+import articleController from "./modules/articles/article.controller";
+import categoryController from "./modules/categories/category.controller";
+import userController from "./modules/users/user.controller";
 const router = express.Router();
 
 /* ************************************************************************* */
@@ -17,6 +18,14 @@ router.get("/api/randomArticle", articleController.readOne);
 router.post("/api/articles", articleController.add);
 router.patch("/api/articles/:id", articleController.modify);
 router.delete("/api/articles/:id", articleController.remove);
+
+// USERS
+router.get("/api/users", userController.browse);
+router.post("/api/users", userController.add);
+
+// router.post('/login', authController.login);
+// router.get('/me', verifyToken, userController.getOneUser)
+
 // Define item-related routes
 // import itemActions from "./modules/item/itemActions";
 

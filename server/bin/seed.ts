@@ -5,9 +5,9 @@ import fs from "node:fs";
 import path from "node:path";
 
 // Import database client
-import database from "../database/client";
+import database from "../src/database/db.config";
 
-import type { AbstractSeeder } from "../database/fixtures/AbstractSeeder";
+import type { AbstractSeeder } from "../src/database/fixtures/AbstractSeeder";
 
 const fixturesPath = path.join(__dirname, "../database/fixtures");
 
