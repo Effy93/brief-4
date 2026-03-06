@@ -1,13 +1,17 @@
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
-import type { Request, Response, NextFunction } from "express";
+import type { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
 import userRepository from "../modules/users/userRepository";
 
 dotenv.config();
 
-const login = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+const login = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const { email, password } = req.body;
 
@@ -44,7 +48,6 @@ const login = async (req: Request, res: Response, next: NextFunction): Promise<v
       expires: new Date(Date.now() + 8 * 3600000), // 8h
     });
     res.status(200).json({ message: "Connexion réussie", token });
-    
   } catch (err) {
     console.error(err);
     next(err);

@@ -1,8 +1,8 @@
 import express from "express";
+import authController from "./auth/authController";
 import articleController from "./modules/articles/article.controller";
 import categoryController from "./modules/categories/category.controller";
 import userController from "./modules/users/user.controller";
-import authController from "./auth/authController";
 const router = express.Router();
 
 /* ************************************************************************* */
@@ -14,7 +14,7 @@ router.post("/api/categories", categoryController.add);
 router.delete("/api/categories/:id", categoryController.remove);
 
 // ARTICLES
-router.get("articles", articleController.browse);
+router.get("/api/articles", articleController.browse);
 router.get("/api/randomArticle", articleController.readOne);
 router.post("/api/articles", articleController.add);
 router.patch("/api/articles/:id", articleController.modify);
