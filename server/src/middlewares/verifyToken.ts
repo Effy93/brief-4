@@ -1,30 +1,36 @@
-// import type { NextFunction, Request, Response } from "express";
-// import jwt from "jsonwebtoken";
+import type { NextFunction, Request, Response } from "express";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+import type { IUser } from "../modules/users/IUser";
+import userRepository from "../modules/users/userRepository";
+dotenv.config();
 
-// export interface AuthRequest extends Request {
-//   user?: any;
-// }
+export interface AuthRequest extends Request {
+    user?: IUser
+}
 
-// export const verifyToken = (
-//   req: AuthRequest,
-//   res: Response,
-//   next: NextFunction,
-// ) => {
-//   const token =
-//     req.headers.authorization?.split(" ")[1] || req.cookies?.access_token;
+export const verifyToken = async (req: AuthRequest, res: Response, next: NextFunction) => {
 
-//   if (!token) {
-//     return res.status(401).json({ message: "Token manquant" });
-//   }
+    try {
+        const token = req.cookies.access_token;
+        console.log(token);
+        if (!token) {
+            return res.status(401).json({ message: "Action non autorisée" })
+        }
 
-//   try {
-//     const decoded = jwt.verify(
-//       token,
-//       process.env.SECRET_KEY || "defaultsecret123!",
-//     );
-//     req.user = decoded;
-//     next();
-//   } catch (err) {
-//     return res.status(403).json({ message: "Token invalide" });
-//   }
-// };
+        const tokenDecode = jwt.verify(token, process.env.SECRET_KEY || "dgjshdfguykdshgdfkjhgfjdsf0011231141.20231$$") as { user_id: string, user_email: string, role: string }
+
+        const [userIfExist] = await userRepository.readByEmail(tokenDecode.user_email) as IUser[]
+        if (!userIfExist) {
+            return res.status(401).json({ message: "Action non autorisée" });
+        }
+
+        req.user = userIfExist;
+        next();
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({ message: "Erreur du serveurs" });
+    }
+
+
+}

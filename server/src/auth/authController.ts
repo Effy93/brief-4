@@ -1,50 +1,56 @@
-// import bcrypt from "bcrypt";
-// import dotenv from "dotenv";
-// import type { RequestHandler } from "express";
-// import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
+import dotenv from "dotenv";
+import type { Request, Response, NextFunction } from "express";
+import jwt from "jsonwebtoken";
 
-// import userRepository from "../modules/users/userRepository";
+import userRepository from "../modules/users/userRepository";
 
-// dotenv.config();
+dotenv.config();
 
-// const login: RequestHandler = async (req, res, next) => {
-//   try {
-//     const { email, password } = req.body;
+const login = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  try {
+    const { email, password } = req.body;
 
-//     if (!email || !password) {
-//       return res.status(400).json({ message: "Identifiant requis" });
-//     }
+    if (!email || !password) {
+      res.status(400).json({ message: "Identifiants requis" });
+      return;
+    }
 
-//     const users = await userRepository.readByEmail(email);
-//     const user = users[0];
+    const users = await userRepository.readByEmail(email);
+    const user = users[0];
 
-//     if (!user) {
-//       return res.status(401).json({ message: "Credentials non valides" });
-//     }
+    if (!user) {
+      res.status(401).json({ message: "Identifiants non valides" });
+      return;
+    }
 
-//     const isValidPassword = await bcrypt.compare(password, user.password);
+    const isValidPassword = await bcrypt.compare(password, user.password);
 
-//     if (!isValidPassword) {
-//       return res.status(401).json({ message: "Credentials non valides" });
-//     }
+    if (!isValidPassword) {
+      res.status(401).json({ message: "Identifiants non valides" });
+      return;
+    }
 
-//     const token = jwt.sign(
-//       { user_id: user.id, user_email: user.email, role: "user" },
-//       process.env.SECRET_KEY || "defaultsecret123!",
-//       { expiresIn: "30d" },
-//     );
+    // Token = carte d'identité
+    const token = jwt.sign(
+      { user_id: user.id, user_email: user.email, role: "user" },
+      process.env.SECRET_KEY || "defaultsecret123!",
+      { expiresIn: "8h" },
+    );
 
-//     // Cookie optionnel si tu veux stocker côté client
-//     res.cookie("access_token", token, {
-//       httpOnly: true,
-//       expires: new Date(Date.now() + 8 * 3600000), // 8h
-//     });
+    // cookie = stockage des infos du token
+    res.cookie("access_token", token, {
+      httpOnly: true,
+      expires: new Date(Date.now() + 8 * 3600000), // 8h
+    });
+    res.status(200).json({ message: "Connexion réussie", token });
+    
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+};
 
-//     return res.status(200).json({ message: "Connexion réussie", token });
-//   } catch (err) {
-//     console.error(err);
-//     next(err);
-//   }
-// };
+const authController = { login };
 
-// export default { login };
+export default authController;
