@@ -47,7 +47,7 @@ const login = async (
       httpOnly: true,
       expires: new Date(Date.now() + 8 * 3600000), // 8h
     });
-    res.status(200).json({ message: "Connexion réussie", token });
+    res.status(200).json({ message: "Connexion réussie" });
   } catch (err) {
     console.error(err);
     next(err);
