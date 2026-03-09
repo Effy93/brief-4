@@ -24,10 +24,7 @@ export const verifyToken = async (
       return;
     }
 
-    const decoded = jwt.verify(
-      token,
-      process.env.SECRET_KEY || "key",
-    ) as {
+    const decoded = jwt.verify(token, process.env.SECRET_KEY || "key") as {
       user_id: string;
       user_email: string;
       role: string;

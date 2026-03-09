@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 import type { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-import userRepository from "../modules/users/userRepository";
 import type { AuthRequest } from "../middlewares/verifyToken";
+import userRepository from "../modules/users/userRepository";
 
 dotenv.config();
 
