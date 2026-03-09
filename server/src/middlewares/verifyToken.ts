@@ -23,7 +23,7 @@ export const verifyToken = async (
 
     const tokenDecode = jwt.verify(
       token,
-      process.env.SECRET_KEY || "dgjshdfguykdshgdfkjhgfjdsf0011231141.20231$$",
+      process.env.SECRET_KEY || "key",
     ) as { user_id: string; user_email: string; role: string };
 
     const [userIfExist] = (await userRepository.readByEmail(
@@ -37,6 +37,6 @@ export const verifyToken = async (
     next();
   } catch (err) {
     console.log(err);
-    return res.status(500).json({ message: "Erreur du serveurs" });
+    return res.status(500).json({ message: "Erreur du serveur" });
   }
 };
