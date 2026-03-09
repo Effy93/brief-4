@@ -3,6 +3,7 @@ import authController from "./auth/authController";
 import articleController from "./modules/articles/article.controller";
 import categoryController from "./modules/categories/category.controller";
 import userController from "./modules/users/user.controller";
+import { verifyToken } from "./middlewares/verifyToken";
 const router = express.Router();
 
 /* ************************************************************************* */
@@ -26,6 +27,9 @@ router.post("/api/users", userController.add);
 
 // LOGIN
 router.post("/api/login", authController.login);
+
+// PROFILE
+router.get("/api/me", verifyToken, authController.me);
 
 // router.post('/login', authController.login);
 // router.get('/me', verifyToken, userController.getOneUser)

@@ -4,6 +4,7 @@ import type { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
 import userRepository from "../modules/users/userRepository";
+import type { AuthRequest } from "../middlewares/verifyToken";
 
 dotenv.config();
 
@@ -53,7 +54,10 @@ const login = async (
     next(err);
   }
 };
+const me = (req: AuthRequest, res: Response) => {
+  res.status(200).json(req.user);
+};
 
-const authController = { login };
+const authController = { login, me };
 
 export default authController;
