@@ -29,7 +29,6 @@ export default function Home() {
 
   return (
     <section className="section-home">
-    
       <div className="main-container">
         <div className="left-container">
           <div className="input-container">
