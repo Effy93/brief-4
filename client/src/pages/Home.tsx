@@ -29,7 +29,7 @@ export default function Home() {
 
   return (
     <section className="section-home">
-      <h1>Popularize</h1>
+    
       <div className="main-container">
         <div className="left-container">
           <div className="input-container">
