@@ -1,6 +1,6 @@
-import databaseClient from "../../database/db.config";
-import type { Result, Rows } from "../../database/db.config";
-import type { IUser } from "./IUser";
+import databaseClient from "../database/db.config";
+import type { Result, Rows } from "../database/db.config";
+import type { IUser } from "../types/IUser";
 
 class UserRepository {
   async readAll() {

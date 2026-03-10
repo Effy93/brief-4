@@ -2,8 +2,8 @@ import bcrypt from "bcrypt";
 import type { RequestHandler } from "express";
 import type { NextFunction, Request, Response } from "express";
 
-import type { IUser } from "./IUser";
-import userRepository from "./userRepository";
+import userRepository from "../models/userRepository";
+import type { IUser } from "../types/IUser";
 
 const browse: RequestHandler = async (req, res, next) => {
   try {

@@ -1,5 +1,5 @@
 import type { NextFunction, Request, RequestHandler, Response } from "express";
-import articleRepository from "./article.repository";
+import articleRepository from "../models/article.repository";
 
 /**
  * Browse all articles

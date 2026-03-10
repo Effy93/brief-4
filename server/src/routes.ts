@@ -1,9 +1,9 @@
 import express from "express";
-import authController from "./auth/authController";
+import articleController from "./controllers/article.controller";
+import authController from "./controllers/authController";
+import categoryController from "./controllers/category.controller";
+import userController from "./controllers/user.controller";
 import { verifyToken } from "./middlewares/verifyToken";
-import articleController from "./modules/articles/article.controller";
-import categoryController from "./modules/categories/category.controller";
-import userController from "./modules/users/user.controller";
 const router = express.Router();
 
 /* ************************************************************************* */

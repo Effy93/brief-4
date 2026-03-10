@@ -1,7 +1,7 @@
 import type { NextFunction, Request, RequestHandler, Response } from "express";
 
-import articleRepository from "../articles/article.repository";
-import categoryRepository from "./category.repository";
+import articleRepository from "../models/article.repository";
+import categoryRepository from "../models/category.repository";
 
 const browse: RequestHandler = async (req, res, next) => {
   try {
