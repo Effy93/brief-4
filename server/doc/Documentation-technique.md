@@ -20,6 +20,42 @@ Il s'agit du **brief 4** de notre formation CDA chez simplon.co, réalisé en bi
 
 . ├─ client/ ├─ server/ ├─ package.json
 
+## Architecture du backend
+
+server
+└─ src
+   ├─ controllers
+   │  ├─ authController.ts
+   │  ├─ articleController.ts
+   │  ├─ categoryController.ts
+   │  └─ userController.ts
+   │
+   ├─ database
+   │  ├─ ds.sql
+   │  └─ db.config.ts
+   │
+   ├─ middlewares
+   │  └─ verifyToken.ts
+   │
+   ├─ models
+   │  ├─ articleRepository.ts
+   │  ├─ categoryRepository.ts
+   │  └─ userRepository.ts
+   │
+   ├─ types
+   │  ├─ IArticle.ts
+   │  ├─ ICategory.ts
+   │  └─ IUser.ts
+   │
+   └─ doc
+      ├─ documentation_technique.md
+      ├─ MCD.png
+      ├─ MLD.png
+      ├─ MPD.png
+      ├─ routes1.md
+      ├─ routes2.md
+      └─ UML-userCase.png
+      
 ## 🎯 Objectif pédagogique
 
 L'application permet de : - gérer des concepts côté serveur (CRUD), -
@@ -44,19 +80,7 @@ filtrer et afficher ces concepts côté client.
 Créer la base de données localement puis configurer le fichier
 server/.env.
 
-Variables attendues :
-
-```JS
-APP_PORT, 
-APP_SECRET, 
-DB_HOST, 
-DB_PORT, 
-DB_USER, 
-DB_PASSWORD, 
-DB_NAME,
-CLIENT_URL, 
-PROJECT_NAME_SPECIFIC_NAME
-```
+Variables attendues : voir le .env.sample
 
 Puis lancer : `npm run db:migrate`
 
@@ -80,13 +104,25 @@ Jest
 
 ## 🧩 Fonctionnalités
 
-CRUD côté serveur, filtres et affichage côté client.
+Authentification utilisateur
+Hashage des mots de passe
+Génération de JWT
+Routes protégées
+CRUD de concepts côté API
+Consommation de l'API côté React (manque panneau ADMIN et formulaire d'inscription qui est reservé aux admin)
+Filtrage et affichage des concepts
 
 ## 🔐 Authentification
 
-Aucune.
+
+L'application inclut une authentification côté serveur pour les administrateurs :
+Hashage des mots de passe avec bcrypt pour sécuriser les mots de passe stockés dans la base.
+JSON Web Token (JWT) généré à la connexion (login) et envoyé dans un cookie HTTP.
+Routes protégées : certaines routes (ex : /me) ne sont accessibles que si le token JWT est valide.
+Testable via Postman uniquement, car le front admin n’est pas encore implémenté.
+
+⚠️ Le registre des utilisateurs (register) et le panneau admin côté front seront ajoutés ultérieurement.
 
 ## 📦 Production
 
 Aucune (usage local uniquement).
-

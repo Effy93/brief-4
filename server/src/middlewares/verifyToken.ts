@@ -20,7 +20,9 @@ export const verifyToken = async (
     const token = req.cookies.access_token;
 
     if (!token) {
-      res.status(401).json({ message: "Action non autorisée" });
+      res
+        .status(401)
+        .json({ message: "Action non autorisée, veuillez vous connectez" });
       return;
     }
 
@@ -35,7 +37,9 @@ export const verifyToken = async (
     const user = users[0];
 
     if (!user) {
-      res.status(401).json({ message: "Action non autorisée" });
+      res
+        .status(401)
+        .json({ message: "Action non autorisée, veuillez vous inscrire" });
       return;
     }
 
@@ -44,6 +48,6 @@ export const verifyToken = async (
     next();
   } catch (error) {
     console.error(error);
-    res.status(401).json({ message: "Token invalide" });
+    res.status(401).json({ message: "Accès interdit" });
   }
 };

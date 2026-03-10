@@ -19,7 +19,7 @@ const add = async (req: Request, res: Response, next: NextFunction) => {
     const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
-      res.status(400).json({ message: "Missing fields" });
+      res.status(400).json({ message: "Identifiants manquants" });
       return;
     }
 
@@ -28,7 +28,7 @@ const add = async (req: Request, res: Response, next: NextFunction) => {
     const user = users[0];
 
     if (user) {
-      res.status(409).json({ message: "Email already used" });
+      res.status(409).json({ message: "Action non autorisée" });
       return;
     }
 
