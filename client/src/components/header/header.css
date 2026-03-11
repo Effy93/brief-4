@@ -1,0 +1,41 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  transition: all 0.3s ease;
+  background: rgba(243, 237, 247, 0.283);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.logo span {
+  display: inline-block;
+  transition: transform 0.4s ease-out, letter-spacing 0.6s ease-out;
+}
+
+.logo:hover span {
+  letter-spacing: 4px;
+  transform: scale(1.4) translateY(-4px);
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+/* état après scroll */
+.header--small {
+  padding: 0.6rem 2rem;
+}
+
+.header--small .logo {
+  font-size: 1.3rem;
+}
