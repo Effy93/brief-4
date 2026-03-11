@@ -1,18 +1,12 @@
-main {
-  background-color: black;
-}
 .section-home {
   min-height: 100vh;
 }
-.section-home h1 {
-  text-align: center;
-  font-size: 64px;
-  padding: 20px 0;
-}
+
 .main-container {
   display: flex;
   padding-top: 150px;
 }
+
 .left-container,
 .right-container {
   flex: 1;
