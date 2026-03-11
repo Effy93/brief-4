@@ -7,9 +7,11 @@
 #root {
   --color-main: #6750a4;
   --color-second: #f3edf7;
+  --color-link: #9b59b6;
   --color-text: #000;
   --font-titre: "Italiana", serif;
   --font-texte: "Inter", sans-serif;
+  --gradient: linear-gradient(90deg, #D68910, #CA4311);
 }
 body {
   font-family: var(--font-texte);

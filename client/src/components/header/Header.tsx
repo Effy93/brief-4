@@ -5,40 +5,40 @@ export default function Header() {
   const [scrolled, setScrolled] = useState(false);
   const logoText = "Popularize";
 
+  const [logoChars] = useState(() =>
+    logoText.split("").map((char, index) => ({
+      char,
+      key: `${char}-${Math.random().toString(36).slice(2, 5)}`,
+      isGradient: index >= logoText.length - 3,
+    }))
+  );
+
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
-    };
-
+    const handleScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", handleScroll);
-
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <header className={`header ${scrolled ? "header--small" : ""}`}>
       <h1 className="logo">
-        {logoText.split("").map((char, index) => {
-          const uniqueKey = `${char}-${Math.random().toString(36).substr(2, 5)}`;
-          return (
+        <a href="/" className="logo-link">
+          {logoChars.map(({ char, key, isGradient }, index) => (
             <span
-              key={uniqueKey}
+              key={key}
+              className={isGradient ? "gradient" : ""}
               style={{ transitionDelay: `${index * 0.08}s` }}
             >
               {char}
             </span>
-          );
-        })}
+          ))}
+        </a>
       </h1>
 
       <nav>
         <ul>
-          <li>
-            <a href="./"> A propos</a>
-          </li>
-          <li>
-            <a href="./"> Contact </a>
-          </li>
+          <li><a href="#about" className="nav-link">A propos</a></li>
+          <li><a href="#contact" className="nav-link">Contact</a></li>
         </ul>
       </nav>
     </header>
