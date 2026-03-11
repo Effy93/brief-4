@@ -10,7 +10,7 @@ export default function Header() {
       char,
       key: `${char}-${Math.random().toString(36).slice(2, 5)}`,
       isGradient: index >= logoText.length - 3,
-    }))
+    })),
   );
 
   useEffect(() => {
@@ -37,8 +37,16 @@ export default function Header() {
 
       <nav>
         <ul>
-          <li><a href="#about" className="nav-link">A propos</a></li>
-          <li><a href="#contact" className="nav-link">Contact</a></li>
+          <li>
+            <a href="#about" className="nav-link">
+              A propos
+            </a>
+          </li>
+          <li>
+            <a href="#contact" className="nav-link">
+              Contact
+            </a>
+          </li>
         </ul>
       </nav>
     </header>
