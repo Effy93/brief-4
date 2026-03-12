@@ -18,8 +18,8 @@
   transition: transform 0.4s ease-out, letter-spacing 0.6s ease-out;
 }
 
-.logo:hover span,
-.logo:focus span {
+.logo-link:hover span,
+.logo-link:focus span {
   transform: scale(1.4) translateY(-4px);
   letter-spacing: 4px;
 }
@@ -32,22 +32,10 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* focus logo clavier / tactile */
-.logo:focus {
-  outline: none; /* pas de carré */
-}
-
 .logo-link {
   display: inline-block;
-  text-decoration: none;
   color: inherit;
   outline: none;
-}
-
-.logo-link:hover span,
-.logo-link:focus span {
-  transform: scale(1.4) translateY(-4px);
-  letter-spacing: 4px;
 }
 
 /* Nav */
