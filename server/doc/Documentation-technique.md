@@ -54,12 +54,16 @@ server
       ├─ MPD.png
       ├─ routes1.md
       ├─ routes2.md
-      └─ UML-userCase.png
+      └─ D-useCase.drawio.png
+      └─ D-Classe.drawio.png
+      └─ D-Composant.drawio.png
+      └─ D-Sequence.drawio.png
       
 ## 🎯 Objectif pédagogique
 
-L'application permet de : - gérer des concepts côté serveur (CRUD), -
-filtrer et afficher ces concepts côté client.
+L'application permet de : 
+- gérer des concepts côté serveur (CRUD), 
+- filtrer et afficher ces concepts côté client.
 
 ## ⚙️ Prérequis
 
@@ -122,6 +126,7 @@ Routes protégées : certaines routes (ex : /me) ne sont accessibles que si le t
 Testable via Postman uniquement, car le front admin n’est pas encore implémenté.
 
 ⚠️ Le registre des utilisateurs (register) et le panneau admin côté front seront ajoutés ultérieurement.
+En cours de développement sur le projet : https://github.com/Effy93/AstraLumen
 
 ## 📦 Production
 
