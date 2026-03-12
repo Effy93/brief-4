@@ -39,12 +39,12 @@ export default function Header() {
         <ul>
           <li>
             <a href="#about" className="nav-link">
-              Chronos
+              About
             </a>
           </li>
           <li>
             <a href="#contact" className="nav-link">
-              Conexion
+              Contact
             </a>
           </li>
         </ul>
