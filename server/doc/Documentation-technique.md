@@ -21,7 +21,7 @@ Il s'agit du **brief 4** de notre formation CDA chez simplon.co, réalisé en bi
 . ├─ client/ ├─ server/ ├─ package.json
 
 ## Architecture du backend
-
+```
 server
 └─ src
    ├─ controllers
@@ -58,7 +58,8 @@ server
       └─ D-Classe.drawio.png
       └─ D-Composant.drawio.png
       └─ D-Sequence.drawio.png
-      
+```
+
 ## 🎯 Objectif pédagogique
 
 L'application permet de : 
